@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Modelo_Fisico" version="1.0">
+  <database name="Modelo_Fisico" type="Generic Database">
+    <table name="Cliente">
+      <column name="ID_Cliente" type="INTEGER" primaryKey="true"/>
+      <column name="Nome" type="VARCHAR"/>
+      <column name="Email" type="VARCHAR"/>
+      <column name="Telefone" type="VARCHAR"/>
+    </table>
+    <table name="Produto">
+      <column name="ID_Produto" type="INTEGER" primaryKey="true"/>
+      <column name="Nome" type="VARCHAR"/>
+      <column name="Preco" type="DECIMAL"/>
+      <column name="Categoria" type="VARCHAR"/>
+    </table>
+    <table name="Estoque">
+      <column name="ID_Estoque" type="INTEGER" primaryKey="true"/>
+      <column name="Quantidade" type="INTEGER"/>
+      <column name="Local_Armazenamento" type="VARCHAR"/>
+    </table>
+    <table name="Funcionario">
+      <column name="ID_Funcionario" type="INTEGER" primaryKey="true"/>
+      <column name="Nome" type="VARCHAR"/>
+      <column name="Cargo" type="VARCHAR"/>
+      <column name="Telefone" type="VARCHAR"/>
+    </table>
+    <table name="Pedido">
+      <column name="ID_Pedido" type="INTEGER" primaryKey="true"/>
+      <column name="Data" type="DATE"/>
+      <column name="ID_Cliente" type="INTEGER" foreignKey="true" references="Cliente(ID_Cliente)"/>
+      <column name="ID_Funcionario" type="INTEGER" foreignKey="true" references="Funcionario(ID_Funcionario)"/>
+    </table>
+    <table name="Fornecedor">
+      <column name="ID_Fornecedor" type="INTEGER" primaryKey="true"/>
+      <column name="Nome" type="VARCHAR"/>
+      <column name="Telefone" type="VARCHAR"/>
+      <column name="Email" type="VARCHAR"/>
+    </table>
+    <table name="Item_Pedido">
+      <column name="ID_Pedido" type="INTEGER" foreignKey="true" references="Pedido(ID_Pedido)"/>
+      <column name="ID_Produto" type="INTEGER" foreignKey="true" references="Produto(ID_Produto)"/>
+      <column name="Quantidade" type="INTEGER"/>
+    </table>
+    <table name="Produto_Fornecedor">
+      <column name="ID_Produto" type="INTEGER" foreignKey="true" references="Produto(ID_Produto)"/>
+      <column name="ID_Fornecedor" type="INTEGER" foreignKey="true" references="Fornecedor(ID_Fornecedor)"/>
+    </table>
+  </database>
+</project>
